@@ -1,6 +1,7 @@
-docker-postfix
-==============
+docker-postfix+pcre
+===================
 
+Catatnight:postfix with pcre - (when sending mails from container emails were blackisted because of source ip missmatch -host machine-docker container)
 run postfix with smtp authentication (sasldb) in a docker container.
 TLS and OpenDKIM support are optional.
 

@@ -38,6 +38,13 @@ postconf -F '*/*/chroot = n'
 postconf -e smtpd_sasl_auth_enable=yes
 postconf -e broken_sasl_auth_clients=yes
 postconf -e smtpd_recipient_restrictions=permit_sasl_authenticated,reject_unauth_destination
+postconf -e smtp_header_checks=pcre:/etc/postfix/smtp_header_checks
+
+cat >> /etc/postfix/smtp_header_checks <<EOF
+/^Received: .*/     IGNORE
+/^X-Originating-IP:/    IGNORE
+EOF
+
 # smtpd.conf
 cat >> /etc/postfix/sasl/smtpd.conf <<EOF
 pwcheck_method: auxprop
